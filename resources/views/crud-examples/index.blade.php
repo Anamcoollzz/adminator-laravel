@@ -14,11 +14,6 @@
                 <h4 class="c-grey-900">Crud Example Data</h4>
                 <a href="{{ route('crud-examples.create') }}" class="btn btn-primary">Create New</a>
               </div>
-              @if (session('success'))
-                <div class="alert alert-success">
-                  {{ session('success') }}
-                </div>
-              @endif
               <div class="table-responsive">
                 <table id="dataTable2" class="table table-striped table-bordered" cellspacing="0" width="100%">
                   <thead>

@@ -55,6 +55,14 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="sidebar-link" href="{{ route('users.index') }}">
+          <span class="icon-holder">
+            <i class="c-blue-500 ti-user"></i>
+          </span>
+          <span class="title">Users</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="sidebar-link" href="email.html">
           <span class="icon-holder">
             <i class="c-brown-500 ti-email"></i>
