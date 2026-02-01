@@ -50,6 +50,7 @@
                       <th>#</th>
                       <th>Name</th>
                       <th>Email</th>
+                      <th>Role</th>
                       <th>Created At</th>
                       <th>Actions</th>
                     </tr>
@@ -60,6 +61,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
+                        <td>{{ ucfirst($user->role) }}</td>
                         <td>{{ $user->created_at->format('Y-m-d H:i') }}</td>
                         <td class="text-nowrap">
                           <a href="{{ route('users.show', $user->id) }}" class="btn btn-sm btn-primary" title="View">

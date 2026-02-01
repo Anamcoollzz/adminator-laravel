@@ -18,6 +18,7 @@ class UsersTemplateExport implements FromCollection, WithHeadings
                 'name' => 'John Doe',
                 'email' => 'john@example.com',
                 'password' => 'password123',
+                'role' => 'user',
             ]
         ]);
     }
@@ -28,6 +29,7 @@ class UsersTemplateExport implements FromCollection, WithHeadings
             'Name',
             'Email',
             'Password',
+            'Role',
         ];
     }
 }

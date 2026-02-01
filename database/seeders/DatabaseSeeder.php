@@ -15,14 +15,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // 1 Superadmin
         User::factory()->create([
-            'name' => 'Adminator Admin',
-            'email' => 'admin@adminator.test',
-            'password' => \Illuminate\Support\Facades\Hash::make('password'),
+            'name' => 'Super Admin',
+            'email' => 'superadmin@adminator.test',
+            'role' => 'superadmin',
         ]);
 
+        // 10 Admins
+        User::factory(10)->create([
+            'role' => 'admin',
+        ]);
+
+        // 100 Users (default role is 'user' from factory)
         User::factory(100)->create();
     }
 }

@@ -36,6 +36,18 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                   @enderror
                 </div>
+                <div class="form-group mb-3">
+                  <label for="role">Role</label>
+                  <select name="role" id="role" class="form-select @error('role') is-invalid @enderror" required>
+                    <option value="" selected disabled>Select Role</option>
+                    <option value="superadmin" {{ old('role') == 'superadmin' ? 'selected' : '' }}>Superadmin</option>
+                    <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                    <option value="user" {{ old('role') == 'user' ? 'selected' : '' }}>User</option>
+                  </select>
+                  @error('role')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
+                </div>
                 <div class="text-right">
                   <button type="submit" class="btn btn-primary">Create User</button>
                 </div>
