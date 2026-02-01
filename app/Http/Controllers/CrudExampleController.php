@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\CrudExample;
+use App\Exports\CrudExamplesExport;
+use App\Imports\CrudExamplesImport;
+use App\Exports\CrudExamplesTemplateExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class CrudExampleController extends Controller
@@ -84,5 +88,35 @@ class CrudExampleController extends Controller
         $crudExample->delete();
 
         return redirect()->route('crud-examples.index')->with('success', 'Data deleted successfully.');
+    }
+
+    /**
+     * Export to Excel.
+     */
+    public function export()
+    {
+        return Excel::download(new CrudExamplesExport, 'crud_examples.xlsx');
+    }
+
+    /**
+     * Download import template.
+     */
+    public function template()
+    {
+        return Excel::download(new CrudExamplesTemplateExport, 'crud_examples_template.xlsx');
+    }
+
+    /**
+     * Import from Excel.
+     */
+    public function import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
+
+        Excel::import(new CrudExamplesImport, $request->file('file'));
+
+        return redirect()->route('crud-examples.index')->with('success', 'Data imported successfully.');
     }
 }

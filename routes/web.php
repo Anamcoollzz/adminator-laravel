@@ -10,7 +10,12 @@ Route::middleware('auth')->group(function () {
 Route::get('/auth/login', [AdminatorController::class, 'formLogin'])->name('adminator.auth.login');
 Route::get('/auth/login', [AdminatorController::class, 'formLogin'])->name('login');
 Route::post('/auth/login', [AdminatorController::class, 'login'])->name('adminator.auth.login.post');
-Route::resource('crud-examples', \App\Http\Controllers\CrudExampleController::class)->middleware('auth');
+Route::middleware('auth')->group(function () {
+    Route::get('crud-examples/export', [\App\Http\Controllers\CrudExampleController::class, 'export'])->name('crud-examples.export');
+    Route::get('crud-examples/template', [\App\Http\Controllers\CrudExampleController::class, 'template'])->name('crud-examples.template');
+    Route::post('crud-examples/import', [\App\Http\Controllers\CrudExampleController::class, 'import'])->name('crud-examples.import');
+    Route::resource('crud-examples', \App\Http\Controllers\CrudExampleController::class);
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('users/export', [\App\Http\Controllers\UserController::class, 'export'])->name('users.export');
